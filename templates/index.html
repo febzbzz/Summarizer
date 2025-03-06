@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Insights - Article Summarizer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #530932;
+            --secondary-color: #5a2742;
+            --accent-color: #c45594;
+            --background-light: #f8f9fa;
+            --text-color: #5b2278;
+            --white: #ffffff;
+            
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar-menu a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-menu a:hover {
+            text-decoration: underline;
+        }
+
+        .page-content {
+            margin-top: 80px;
+            padding: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .home-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .history-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .history-item {
+            background-color: var(--background-light);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+        }
+
+        .btn-danger {
+            background-color: red;
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background-color: darkred;
+        }
+
+        @media (max-width: 768px) {
+            .home-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <i class="fas fa-newspaper"></i>
+            News Insights
+        </div>
+        <div class="navbar-menu">
+            <a href="#home" data-section="home">Home</a>
+            <a href="#about" data-section="about">About</a>
+            <a href="#history" data-section="history">History</a>
+            <a href="#contact" data-section="contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        <!-- Home Section -->
+         <!-- Home Section -->
+<section id="home" class="section home-section">
+    <div class="home-container">
+        <div class="home-text">
+            <h1 class="headline">AI-Powered News Summarization</h1>
+            <p class="sub-text">Get quick, accurate, and concise summaries of news articles in seconds.</p>
+            <form method="POST" class="url-form">
+                <input type="text" name="url" class="url-input" placeholder="Enter news article URL" required>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-magic"></i> Summarize Now
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="section">
+    <h2 class="section-header">Why Choose News Insights?</h2>
+    <div class="features-container">
+        <div class="feature">
+            <i class="fas fa-bolt feature-icon"></i>
+            <h3>Fast Summarization</h3>
+            <p>Get a summary within seconds using AI-powered algorithms.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-brain feature-icon"></i>
+            <h3>Smart AI</h3>
+            <p>Our AI understands key points and delivers highly relevant summaries.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-mobile feature-icon"></i>
+            <h3>Mobile-Friendly</h3>
+            <p>Access the tool on any device, anytime.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-lock feature-icon"></i>
+            <h3>Secure & Private</h3>
+            <p>We prioritize your privacy – no data is stored.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="section">
+    <h2 class="section-header">What Our Users Say</h2>
+    <div class="testimonials-container">
+        <div class="testimonial">
+            <p>"News Insights saves me hours every day! The summaries are precise and well-structured."</p>
+            <span>- Alex Johnson</span>
+        </div>
+        <div class="testimonial">
+            <p>"Amazing tool! I can quickly scan through news articles without wasting time."</p>
+            <span>- Sarah Lee</span>
+        </div>
+        <div class="testimonial">
+            <p>"A must-have for journalists and researchers. Fast, reliable, and easy to use!"</p>
+            <span>- Michael Chen</span>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action (CTA) -->
+<section id="cta" class="section cta-section">
+    <h2>Start Summarizing Today!</h2>
+    <p>Experience the power of AI-driven news summarization.</p>
+    <a href="#home" class="cta-btn">Try It Now</a>
+</section>
+
+
+<style>
+    /* General Styling */
+.section {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.section-header {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+/* Home Section */
+.home-section {
+    background: url('https://source.unsplash.com/1600x900/?news,technology') center/cover no-repeat;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.home-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.headline {
+    font-size: 2.8rem;
+    font-weight: bold;
+}
+
+.sub-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.url-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.url-input {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-color);
+}
+
+/* Features Section */
+.features-container {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.feature {
+    width: 250px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.feature h3 {
+    margin-top: 15px;
+}
+
+/* Testimonials Section */
+.testimonials-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.testimonial {
+    width: 300px;
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--light-gray);
+    font-style: italic;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* CTA Section */
+.cta-section {
+    background: var(--primary-color);
+    color: white;
+    padding: 60px;
+}
+
+.cta-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 25px;
+    background: var(--white);
+    color: var(--primary-color);
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features-container, .testimonials-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home-section {
+        height: auto;
+        padding: 100px 10%;
+    }
+
+    .headline {
+        font-size: 2rem;
+    }
+}
+
+</style>
+
+
+      <!-- About Section -->
+       <!-- About Section -->
+<section id="about" class="section about-section" style="display: none;">
+    <div class="about-container">
+        <h2 class="section-header">About <span class="highlight">News Insights</span></h2>
+        <p class="about-intro">
+            <strong>News Insights</strong> is an AI-powered tool that helps you stay informed quickly by summarizing news articles from various sources. Our smart algorithm condenses long news pieces into key highlights, saving you time while keeping you updated.
+        </p>
+
+        <div class="about-content">
+            <div class="about-card">
+                <i class="fas fa-robot about-icon"></i>
+                <h3>AI-Powered Summaries</h3>
+                <p>Our cutting-edge AI extracts key points, delivering concise yet informative summaries.</p>
+            </div>
+            
+            <div class="about-card">
+                <i class="fas fa-stopwatch about-icon"></i>
+                <h3>Save Time & Effort</h3>
+                <p>Get the essence of any article within seconds—no more reading long texts.</p>
+            </div>
+
+            <div class="about-card">
+                <i class="fas fa-globe about-icon"></i>
+                <h3>Works With Any News Site</h3>
+                <p>Paste a URL from any news website, and our AI will summarize it for you.</p>
+            </div>
+
+            <div class="about-card">
+                <i class="fas fa-lock about-icon"></i>
+                <h3>Privacy First</h3>
+                <p>Your data is safe! We do not store or share any personal information.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+
+    /* About Section Styling */
+.about-section {
+    text-align: center;
+    background-color: var(--white);
+    padding: 60px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.about-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.about-intro {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.about-card {
+    background: var(--background-light);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.about-icon {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+</style>
+
+        <!-- History Section -->
+        <section id="history" class="section" style="display: none;">
+            <h2>Summary History</h2>
+            <ul class="history-list">
+                {% for news in summaries %}
+                    <li class="history-item" id="summary-{{ news.id }}">
+                        <div class="history-item-details">
+                            <h3>{{ news.title }}</h3>
+                            <p id="summary-text-{{ news.id }}">{{ news.summary[:150] }}...</p>
+                        </div>
+                        <div class="history-item-actions">
+                            <button class="btn btn-primary" onclick="viewSummary('{{ news.id }}')">View</button>
+                            <button class="btn btn-danger" onclick="deleteSummary('{{ news.id }}')">Delete</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+<style>
+    /* History Section */
+.history-list {
+    list-style: none;
+    padding: 0;
+    max-width: 900px;
+    margin: auto;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--background-light);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.history-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.history-item-details {
+    flex: 1;
+}
+
+.history-item-details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.history-item-details p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.history-item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .history-item-actions {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+</style>
+        <!-- Contact Section -->
+        <!-- Contact Section -->
+<section id="contact" class="section" style="display: none;">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+    <p id="form-response" class="response-message"></p>
+</section>
+<script>
+document.getElementById("contact-form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent page refresh
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+    let responseMessage = document.getElementById("form-response");
+    let submitButton = document.querySelector("#contact-form button");
+
+    // Basic validation
+    if (name === "" || email === "" || message === "") {
+        responseMessage.textContent = "Please fill in all fields!";
+        responseMessage.style.color = "red";
+        return;
+    }
+
+    // Disable button and show loading text
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+    submitButton.classList.add("loading");
+
+    // Simulate sending message (replace with actual API call)
+    setTimeout(() => {
+        responseMessage.textContent = "Message sent successfully! 🎉";
+        responseMessage.style.color = "green";
+
+        // Restore button text and enable
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+        submitButton.classList.remove("loading");
+
+        // Clear form fields
+        document.getElementById("contact-form").reset();
+    }, 1500);
+});
+
+</script>
+<style>
+    /* Contact Section */
+   
+    .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary:focus {
+    outline: none;
+}
+
+.btn-primary.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-primary.sending {
+    background-color: rgb(125, 26, 26) !important;
+    color: black !important;
+}
+
+#contact {
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+    padding: 40px 20px;
+    background: var(--background-light);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+#contact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+#contact h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#contact input,
+#contact textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+#contact textarea {
+    resize: none;
+}
+
+#contact .btn-primary {
+   background-color: var(--primary-color);
+    color: rgb(110, 208, 45);
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+   transition: background 0.3s ease;
+}
+
+#contact .btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%);
+}
+
+.response-message {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #contact {
+        width: 90%;
+        padding: 30px 15px;
+    }
+}
+
+</style>
+    <script>
+        // Section switching
+        document.querySelectorAll('.navbar-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.display = section.id === sectionId ? 'block' : 'none';
+                });
+            });
+        });
+
+        // View Summary function
+        function viewSummary(newsId) {
+            fetch(`/get_summary/${newsId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.error) {
+                    document.getElementById(`summary-text-${newsId}`).textContent = data.summary;
+                } else {
+                    alert("Summary not found.");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        // Delete Summary function
+        function deleteSummary(newsId) {
+            fetch(`/delete_summary/${newsId}`, { method: "DELETE" })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.getElementById(`summary-${newsId}`).remove();
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+    let responseMessage = document.getElementById("form-response");
+    let submitButton = document.querySelector("#contact-form button");
+
+    if (name === "" || email === "" || message === "") {
+        responseMessage.textContent = "Please fill in all fields!";
+        responseMessage.style.color = "red";
+        return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+    submitButton.classList.add("loading");
+
+    // Send data to backend
+    fetch("/send-message", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        responseMessage.textContent = data.success || data.error;
+        responseMessage.style.color = data.success ? "green" : "red";
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+        submitButton.classList.remove("loading");
+
+        if (data.success) {
+            document.getElementById("contact-form").reset();
+        }
+    })
+    .catch(error => {
+        responseMessage.textContent = "An error occurred. Try again!";
+        responseMessage.style.color = "red";
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+        submitButton.classList.remove("loading");
+    });
+});
+
+    </script>
+
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white mt-5 p-4 text-center">
+        <p>&copy; 2025 News Summarizer. All rights reserved.</p>
+        <p>Created by Feba Thankam Moni</p>
+    </footer>
+</body>
+</html>
