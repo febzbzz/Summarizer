@@ -34,7 +34,8 @@
    4. Optionally, delete or view the full summary.
 
 ## Screenshots
-![Home Page]![image](https://github.com/user-attachments/assets/f12dc13f-6862-4c63-aa2a-4f877934144e)
+![Home Page]![image](https://github.com/user-attachments/assets/216b976a-4716-4bdd-af73-53924e1d0e42)
+
 
 
 
